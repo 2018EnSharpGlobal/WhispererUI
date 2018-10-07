@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         listener = new GestureDetector.SimpleOnGestureListener(){
             @Override
             public boolean onDoubleTap(MotionEvent e) {
-                Intent intent = new Intent(MainActivity.this,NavigationActivity.class);
+                Intent intent = new Intent(MainActivity.this,ListenActivity.class);
                 startActivity(intent);
                 return true;
             }

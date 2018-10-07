@@ -1,26 +1,21 @@
 package com.example.gjwls.whisperer;
 
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.view.MotionEvent;
 import android.view.WindowManager;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.DecelerateInterpolator;
-import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 
-import com.example.gjwls.whisperer.Navigation.Navigation;
+public class ListenActivity extends AppCompatActivity {
 
-public class ListeningActivity extends AppCompatActivity{
-
+    private int count;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,20 +27,24 @@ public class ListeningActivity extends AppCompatActivity{
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        findViewById(R.id.main_image).bringToFront();
-
+        findViewById(R.id.listen_image).bringToFront();
         fadeInOutAnimation();
+        
+        count = 0;
     }
 
     @Override
-    protected void onResume(){
-        super.onResume();
+    public boolean onTouchEvent(MotionEvent event) {
+        Intent intent = new Intent(ListenActivity.this,NavigationActivity.class);
+        startActivity(intent);
+        return true;
     }
 
     @Override
-    protected void onPause(){
-        super.onPause();
-    }
+    protected void onResume(){ super.onResume(); }
+
+    @Override
+    protected void onPause(){ super.onPause(); }
 
     @Override
     protected void onDestroy(){
