@@ -1,6 +1,7 @@
 package com.example.gjwls.whisperer;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -17,6 +18,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
+import android.widget.ThemedSpinnerAdapter;
 
 public class ListenActivity extends AppCompatActivity {
     private boolean flag;
@@ -56,6 +58,8 @@ public class ListenActivity extends AppCompatActivity {
                     startActivity(intent1);
                     break;
                 case Constants.NAVIGATION:
+                    ProgressDialog dialog = ProgressDialog.show(ListenActivity.this, "",
+                                "목적지를 설정하는 중입니다...", true);
                     Intent intent2 = new Intent(ListenActivity.this,NavigationActivity.class);
                     this.finish();
                     startActivity(intent2);

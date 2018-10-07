@@ -39,8 +39,6 @@ public class MainActivity extends AppCompatActivity {
         work_List = new ArrayList();
         findViewById(R.id.main_image).bringToFront();
 
-        fadeInOutAnimation();
-
         listener = new GestureDetector.SimpleOnGestureListener(){
             @Override
             public boolean onDoubleTap(MotionEvent e) {
@@ -73,29 +71,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         findViewById(R.id.fade_inout1).clearAnimation();
-    }
-
-    private void fadeInOutAnimation(){
-
-        final ImageView iv = findViewById(R.id.fade_inout1);
-
-        Animation fadeIn = new AlphaAnimation(0, 1);
-        fadeIn.setInterpolator(new DecelerateInterpolator()); //add this
-        fadeIn.setRepeatCount(Animation.INFINITE);
-        fadeIn.setRepeatMode(Animation.REVERSE);
-        fadeIn.setDuration(1000);
-
-        Animation fadeOut = new AlphaAnimation(1, 0);
-        fadeOut.setInterpolator(new AccelerateInterpolator()); //and this
-        fadeOut.setRepeatCount(Animation.INFINITE);
-        fadeOut.setStartOffset(1000);
-        fadeOut.setDuration(1000);
-
-        AnimationSet animation = new AnimationSet(false); //change to false
-        animation.addAnimation(fadeIn);
-        animation.setRepeatCount(Animation.INFINITE);
-
-        iv.setAnimation(animation);
     }
 
 }
