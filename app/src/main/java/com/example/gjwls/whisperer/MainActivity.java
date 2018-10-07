@@ -18,15 +18,19 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    GestureDetector detector;
-
     public static ArrayList work_List;
-    GestureDetector.SimpleOnGestureListener listener;
+    private GestureDetector.SimpleOnGestureListener listener;
+    private GestureDetector detector;
+    private int count;
+    private String mode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        count = 0;
+
         getSupportActionBar().hide();
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -40,8 +44,19 @@ public class MainActivity extends AppCompatActivity {
         listener = new GestureDetector.SimpleOnGestureListener(){
             @Override
             public boolean onDoubleTap(MotionEvent e) {
-                Intent intent = new Intent(MainActivity.this,ListenActivity.class);
+                if(count==0) {
+                    mode = Constants.HELP;
+                } else if(count==1){
+                    mode = Constants.NAVIGATION;
+                } else if(count==2){
+                    mode = Constants.CALL;
+                }
+
+                Intent intent = new Intent(MainActivity.this, ListenActivity.class);
+                intent.putExtra("mode",mode);
                 startActivity(intent);
+
+                count++;
                 return true;
             }
         };

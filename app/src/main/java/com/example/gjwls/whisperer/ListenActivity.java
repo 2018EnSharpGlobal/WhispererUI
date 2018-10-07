@@ -19,7 +19,8 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 
 public class ListenActivity extends AppCompatActivity {
-
+    private boolean flag;
+    private String mode;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +35,9 @@ public class ListenActivity extends AppCompatActivity {
         findViewById(R.id.listen_image).bringToFront();
         fadeInOutAnimation();
 
+        mode = getIntent().getStringExtra("mode");
+        flag = true;
+
         int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE);
 
         if(permissionCheck== PackageManager.PERMISSION_DENIED){
@@ -44,11 +48,27 @@ public class ListenActivity extends AppCompatActivity {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        String tel = "tel:01030612019";
-        startActivity(new Intent("android.intent.action.CALL", Uri.parse(tel)));
-//        Intent intent = new Intent(ListenActivity.this,NavigationActivity.class);
-//        this.finish();
-//        startActivity(intent);
+        if(flag) {
+            switch (mode){
+                case Constants.HELP:
+                    Intent intent1 = new Intent(ListenActivity.this,HelpActivity.class);
+                    this.finish();
+                    startActivity(intent1);
+                    break;
+                case Constants.NAVIGATION:
+                    Intent intent2 = new Intent(ListenActivity.this,NavigationActivity.class);
+                    this.finish();
+                    startActivity(intent2);
+                    break;
+                case Constants.CALL:
+                    String tel = "tel:0263117261";
+                    this.finish();
+                    startActivity(new Intent("android.intent.action.CALL", Uri.parse(tel)));
+                    break;
+            }
+            flag = false;
+        }
+
         return true;
     }
 
