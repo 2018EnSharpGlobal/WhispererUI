@@ -1,68 +1,60 @@
 package com.example.gjwls.whisperer;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-import android.view.View;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.WindowManager;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.DecelerateInterpolator;
+import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 
-import java.util.ArrayList;
+import com.example.gjwls.whisperer.Navigation.Navigation;
 
-public class MainActivity extends AppCompatActivity {
-
-    GestureDetector detector;
-
-    public static ArrayList work_List;
-    GestureDetector.SimpleOnGestureListener listener;
+public class ListeningActivity extends AppCompatActivity{
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
+        setContentView(R.layout.activity_listening);
+
         getSupportActionBar().hide();
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        work_List = new ArrayList();
         findViewById(R.id.main_image).bringToFront();
 
         fadeInOutAnimation();
-
-        listener = new GestureDetector.SimpleOnGestureListener(){
-            @Override
-            public boolean onDoubleTap(MotionEvent e) {
-                Intent intent = new Intent(MainActivity.this,NavigationActivity.class);
-                startActivity(intent);
-                return true;
-            }
-        };
-        detector = new GestureDetector(listener);
-        getWindow().getDecorView().setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent event) {
-                return detector.onTouchEvent(event);
-            }
-        });
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
-        findViewById(R.id.fade_inout1).clearAnimation();
+    protected void onResume(){
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+    }
+
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
     }
 
     private void fadeInOutAnimation(){
 
-        final ImageView iv = findViewById(R.id.fade_inout1);
+        final ImageView iv = findViewById(R.id.fade_inout2);
 
         Animation fadeIn = new AlphaAnimation(0, 1);
         fadeIn.setInterpolator(new DecelerateInterpolator()); //add this
@@ -82,5 +74,4 @@ public class MainActivity extends AppCompatActivity {
 
         iv.setAnimation(animation);
     }
-
 }

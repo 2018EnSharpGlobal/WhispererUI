@@ -40,7 +40,7 @@
         app:srcCompat="@drawable/listen_mark" />
 
     <ImageView
-        android:id="@+id/fade_inout1"
+        android:id="@+id/fade_inout2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
