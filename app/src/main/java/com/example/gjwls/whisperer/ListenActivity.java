@@ -53,12 +53,14 @@ public class ListenActivity extends AppCompatActivity {
         if(flag) {
             switch (mode){
                 case Constants.HELP:
+                    ProgressDialog dialog1 = ProgressDialog.show(ListenActivity.this, "",
+                            "지하철 정보를 가져오는 중입니다...", true);
                     Intent intent1 = new Intent(ListenActivity.this,HelpActivity.class);
                     this.finish();
                     startActivity(intent1);
                     break;
                 case Constants.NAVIGATION:
-                    ProgressDialog dialog = ProgressDialog.show(ListenActivity.this, "",
+                    ProgressDialog dialog2 = ProgressDialog.show(ListenActivity.this, "",
                                 "목적지를 설정하는 중입니다...", true);
                     Intent intent2 = new Intent(ListenActivity.this,NavigationActivity.class);
                     this.finish();

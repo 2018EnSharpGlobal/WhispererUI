@@ -42,13 +42,10 @@ public class MainActivity extends AppCompatActivity {
         listener = new GestureDetector.SimpleOnGestureListener(){
             @Override
             public boolean onDoubleTap(MotionEvent e) {
-                if(count==0) {
-                    mode = Constants.HELP;
-                } else if(count==1){
-                    mode = Constants.NAVIGATION;
-                } else if(count==2){
-                    mode = Constants.CALL;
-                }
+                if(count==0) { mode = Constants.HELP; }
+                else if(count==1) { mode = Constants.NAVIGATION; }
+                else if(count==2) { mode = Constants.CALL; }
+                else { mode = Constants.NAVIGATION; }
 
                 Intent intent = new Intent(MainActivity.this, ListenActivity.class);
                 intent.putExtra("mode",mode);
